@@ -38,12 +38,8 @@ int find_result_part2(int* arr) {
                     if (arr[final_val] != 0) {
                         return arr[final_val] * val1 * val2;
                     }
-                } else {
-                    continue;
                 }
             }
-        } else {
-            continue;
         }
     }
 
@@ -52,6 +48,7 @@ int find_result_part2(int* arr) {
 
 int main() {
     FILE *input = fopen("day1-input.txt", "r");
+    assert(input);
 
     int* arr = (int*) malloc(sizeof(int) * TABLE_SIZE);
     assert(arr);
@@ -61,12 +58,10 @@ int main() {
     fill_table(arr, input);
 
     int result = find_result_part1(arr);
-
-    printf("answer: %d\n", result);
+    printf("Part 1 answer: %d\n", result);
 
     int result2 = find_result_part2(arr);
-
-    printf("answer: %d\n", result2);
+    printf("Part 2 answer: %d\n", result2);
 
     fclose(input);
 
