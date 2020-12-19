@@ -117,6 +117,7 @@ int main() {
     printf("Number of legal passwords (Part 2): %d", result2);
 
     fclose(input);
+    free(passwords);
 
     return 0;
 }

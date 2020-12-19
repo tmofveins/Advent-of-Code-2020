@@ -64,6 +64,7 @@ int main() {
     printf("Part 2 answer: %d\n", result2);
 
     fclose(input);
+    free(arr);
 
     return 0;
 }
