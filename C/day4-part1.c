@@ -3,9 +3,9 @@
 #include <string.h>
 #include <assert.h>
 
-#define SEP1 ':'
-#define SEP2 ' '
-#define SEP3 '\n'
+#define COLON ':'
+#define SPACE ' '
+#define NEWLINE '\n'
 #define CID "cid"
 #define NFIELDS 8
 #define FIELD_LEN 4
@@ -34,7 +34,7 @@ int get_npassports(FILE* input) {
     return npassports;
 }
 
-void fill_passports(FILE* input, char** passports, int npassports) {
+void fill_passports(FILE* input, char** passports) {
     char line[128];
     int i = 0;
 
@@ -53,12 +53,13 @@ void remove_newlines_and_delims(char* passport) {
     char* separated_data = (char*)malloc(sizeof(char) * length + 1);
 
     for (int i = 0; i < length; i++) {
-        if (passport[i] == SEP1 || passport[i] == SEP2 || passport[i] == SEP3) {
+        if (passport[i] == COLON || passport[i] == SPACE || passport[i] == NEWLINE) {
             separated_data[i] = ' ';
         } else {
             separated_data[i] = passport[i];
         }
     }
+    separated_data[length] = '\0';
     
     strcpy(passport, separated_data);
 }
@@ -117,7 +118,7 @@ int main() {
     }
     assert(passports);
 
-    fill_passports(input, passports, npassports);
+    fill_passports(input, passports);
 
     int result_part1 = count_legal_passports_part1(passports, npassports, fields);
     printf("Number of legal passports (Part 1): %d\n", result_part1);    
